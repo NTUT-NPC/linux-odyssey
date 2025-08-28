@@ -19,18 +19,19 @@ const toggleMenu = () => {
 </script>
 <template>
   <div
-    class="w-full top-0 px-5 fixed flex flex-row flex-wrap bg-bg-secondary justify-between items-center sm:justify-between"
+    class="w-full top-0 px-5 fixed flex flex-row bg-bg-secondary justify-between items-center"
   >
-    <div class="flex flex-row items-center gap-3" :class="{ hidden: menuOpen }">
-      <img src="../../img/icon_totem.svg" class="h-8 justify-self-start" />
+    <div class="flex flex-row items-center" :class="{ hidden: menuOpen }">
       <RouterLink
         to="/"
         id="GameTitle"
         class="text-text-primary inline-block font-bold whitespace-nowrap pt-1 transition ease-in-out hover:scale-110 duration-300"
         style="font-size: 2vh"
       >
-        Linux Odyssey
+        NTUT PROGRAMMING CLUB
       </RouterLink>
+    </div>
+    <div class="absolute left-1/2 transform -translate-x-1/2" :class="{ hidden: menuOpen }">
       <p
         id="QuestTitle"
         class="text-text inline-block font-bold whitespace-nowrap"
@@ -40,7 +41,7 @@ const toggleMenu = () => {
       </p>
     </div>
     <div
-      class="w-full flex flex-col items-center justify-end sm:w-auto sm:block sm:ml-6"
+      class="w-full flex flex-col items-center justify-end sm:w-auto sm:block"
       :class="{ hidden: !menuOpen }"
     >
       <component :is="headerComponent" />

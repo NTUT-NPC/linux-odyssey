@@ -12,8 +12,17 @@ export const newCommand = asyncHandler(async (req: Request, res: Response) => {
   if (!config.isProduction) {
     console.log('newCommand', JSON.stringify(req.body, null, 2))
   }
+
+  if (req.body.params?.discover) {
+    req.body.params.discover = req.body.params.discover.map((item: any) => ({
+      ...item,
+      type: item.type === 'folder' ? 'directory' : item.type
+    }))
+  }
+
   const body = commandSchema.safeParse(req.body)
   if (!body.success) {
+    console.error('Invalid command', body.error)
     res.status(400).json({ message: 'Invalid command', errors: body.error })
     return
   }

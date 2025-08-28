@@ -1,6 +1,9 @@
 config 
 .quest
 
+# Zone.Identifier files (Windows security markers)
+*:Zone.Identifier
+
 # Logs
 logs
 *.log

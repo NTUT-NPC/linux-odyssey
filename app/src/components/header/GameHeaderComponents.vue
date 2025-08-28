@@ -59,54 +59,6 @@ onMounted(async () => {
             class="text-text-primary h-full w-full"
           />
         </button> -->
-  <p
-    id="UsernameText"
-    class="text-text inline-block whitespace-nowrap px-1.5"
-    style="font-size: 2vh"
-  >
-    {{ userStore.username }}
-  </p>
-  <button
-    title="Survey"
-    target="_blank"
-    class="md:h-5 md:w-5 px-1.5 w-auto"
-    @click="openSurvey"
-  >
-    <font-awesome-icon
-      :icon="['fas', 'file-invoice']"
-      class="text-text-primary inline"
-    />
-    <span class="text-text sm:hidden px-2">Survey</span>
-  </button>
-  <RouterLink
-    title="LeaderBoard"
-    to="/leaderboard"
-    class="md:h-5 md:w-5 px-1.5 w-auto"
-  >
-    <font-awesome-icon :icon="['fas', 'trophy']" class="text-text-primary" />
-    <span class="text-text sm:hidden px-2">Leader Board</span>
-  </RouterLink>
-  <RouterLink title="Map" to="/map" class="md:h-5 md:w-5 px-1.5 w-auto">
-    <font-awesome-icon :icon="['fas', 'map']" class="text-text-primary" />
-    <span class="text-text sm:hidden px-2">Map</span>
-  </RouterLink>
-  <button
-    title="Bug Report"
-    @click="openBugReport"
-    class="md:h-5 md:w-5 px-1.5 w-auto"
-  >
-    <font-awesome-icon :icon="['fas', 'bug']" class="text-text-primary" />
-    <span class="text-text sm:hidden px-2">Bug Report</span>
-  </button>
-  <button
-    title="Sign Out"
-    @click="handleLogout"
-    class="md:h-5 md:w-5 px-1.5 w-auto"
-  >
-    <font-awesome-icon
-      :icon="['fas', 'arrow-right-from-bracket']"
-      class="text-text-primary"
-    />
-    <span class="text-text sm:hidden px-2">Sign Out</span>
-  </button>
+
+
 </template>

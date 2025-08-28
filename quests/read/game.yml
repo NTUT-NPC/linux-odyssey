@@ -15,15 +15,15 @@ stages:
       command: echo start
     response:
       content: |
-        在終端機中，並沒有圖形介面可以讓你查看檔案的內容。
-        但是你可以透過 `cat` 指令來查看檔案的內容。
-        `cat` 指令是 concatenate 的縮寫，也就是串接的意思。
-        在輸入 `cat [檔案名稱]` 指令後，終端機會輸出檔案的內容。
-        請你先查看這個資料夾中哪些檔案。
-      hint: 請輸入 `ls` 來查看這個資料夾中的檔案。
+        在終端機中，沒有記事本或文書軟體的圖形介面，
+        但你可以使用 `cat` 指令來直接查看檔案的內容。
+        `cat` 是 concatenate 的縮寫，意思是「串接、顯示」。
+        
+        請先查看目前目錄 `/home/commander` 下有哪些檔案或資料夾。
+      hint: 請輸入 `ls` 來查看目前目錄中的檔案。
 
   - id: ls_home
-    name: 查看資料夾中的檔案
+    name: 查看 `/home/commander` 的檔案
     requirements:
       - start
     condition:
@@ -31,31 +31,37 @@ stages:
       command: ls
     response:
       content: |
-        這個資料夾中有一個檔案和一個資料夾。
-        現在你可以使用 `cat` 指令來查看 `file1.txt` 的內容。
-      hint: 請輸入 `cat file1.txt` 來查看檔案的內容。
+        這裡有一個檔案 `intro.txt` 和一個資料夾 `events`。
+        先試試看用 `cat` 來讀取 `intro.txt` 的內容吧！
+      hint: 輸入 `cat intro.txt`
 
-  - id: cat-file1
-    name: 查看 `file1.txt` 的內容
+  - id: cat-intro
+    name: 查看 `intro.txt` 的內容
     requirements:
       - ls_home
     condition:
       pwd: /home/commander
-      command: cat file1.txt
+      command: cat intro.txt
     response:
       content: |
-        你應該能看到檔案的內容了。
-        `cat` 指令也可以使用路徑來查看檔案內容
-        請你先用 `ls folder` 查看資料夾內的檔案。
-      hint: 輸入 `ls folder` 查看資料夾內的檔案
+        你看到檔案的內容了：
+        ```
+        歡迎來到NPC！
+        你可能會好奇NPC是什麼？
+        NPC是「NTUT Programming Club」的縮寫，
+        也就是「北科大程式設計社」的意思。
+        ```
+        做得好！  
+        接下來，請查看 `events` 資料夾裡的檔案。
+      hint: 輸入 `ls events` 來查看。
 
-  - id: ls-folder
-    name: 查看 `folder` 資料夾
+  - id: ls-events
+    name: 查看 `events` 資料夾的檔案
     requirements:
-      - cat-file1
+      - cat-intro
     condition:
       pwd: /home/commander
-      command: ls folder
+      command: ls events
     exceptions:
       - id: not_in_home
         condition:
@@ -67,27 +73,39 @@ stages:
             請輸入 `cd ~` 回到 `/home/commander` 資料夾。
     response:
       content: |
-        你現在知道 `folder` 資料夾的內容了。
-        請用 `cat` 指令來查看 `folder` 資料夾中的 `file.txt` 檔案。
-      hint: 輸入 `cat folder/file.txt` 查看 `file.txt` 檔案的內容。
+        在 `events` 資料夾裡，你發現有一個 `plan.txt`。  
+        這看起來像是聚會的計劃書。  
+        用 `cat` 把它打開看看吧！
+      hint: 輸入 `cat events/plan.txt` 來查看。
+
+  - id: cat-plan
+    name: 查看 `plan.txt` 的內容
+    requirements:
+      - ls-events
+    condition:
+      pwd: /home/commander
+      command: ^cat (\.\/)?events\/plan\.txt$
+    exceptions:
+      - id: not_in_home
+        condition:
+          not:
+            pwd: /home/commander
+        response:
+          content: |
+            請留在 `/home/commander` 資料夾中。
+            請輸入 `cd ~` 回到 `/home/commander` 資料夾。
+    response:
+      content: |
+        很棒！你已經學會使用 `cat` 來查看檔案，
+        並且能透過路徑讀取資料夾中的檔案。  
+        接下來輸入 `echo finish` 來結束這個關卡。
 
   - id: END
-    name: 查看 `file.txt` 的內容
+    name: 結束關卡
     requirements:
-      - ls-folder
+      - cat-plan
     condition:
-      pwd: /home/commander
-      command: cat folder/file.txt
-    exceptions:
-      - id: not_in_home
-        condition:
-          not:
-            pwd: /home/commander
-        response:
-          content: |
-            請留在 `/home/commander` 資料夾中。
-            請輸入 `cd ~` 回到 `/home/commander` 資料夾。
+      command: ^echo finish$
     response:
       content: |
-        你成功地查看到 `file.txt` 的內容了。
-        你已經會使用 `cat` 指令查看檔案的內容了。
+        恭喜你，你已經完成了這個關卡！

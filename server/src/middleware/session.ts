@@ -9,7 +9,6 @@ export default session({
   saveUninitialized: false,
   rolling: true,
   cookie: {
-    domain: config.domain,
     httpOnly: true,
     secure: config.protocol === 'https:',
     sameSite: 'lax',

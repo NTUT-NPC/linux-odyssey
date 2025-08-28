@@ -64,8 +64,7 @@ router.beforeEach(async (to, _from, next) => {
     // Check if the user isn't authenticated
     // Redirect to the login page
     next({
-      name: 'register',
-      query: { redirect: to.fullPath }, // Optionally pass a redirect parameter
+      name: 'landing-page', // Redirect to the landing page or login page
     })
   } else if (to.meta.requiresGuest && loggedIn) {
     next({

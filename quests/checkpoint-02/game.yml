@@ -1,97 +1,100 @@
 id: checkpoint-02
-title: 測驗二
+title: 分類社課資料
 image: base
 instruction: |
-  在這個關卡中，將會考驗你是否理解以下內容：
-  1. `cat`：用來查看檔案的內容
-  2. `touch`：用來建立檔案
-  3. `mkdir`：用來建立資料夾
-  4. 用 `tab` 鍵來自動補全
-  5. 之前測驗包含的內容
+  這是第二個測驗關卡！
+
+  緊急任務！社團的檔案管理員不小心把所有社課檔案都丟在同一個資料夾裡了！
+  
+  你需要幫忙把這些檔案分類到正確的資料夾中。
 
 requirements:
-  - create
+  - move
+  - tab
+
 
 stages:
   - id: start
-    name: 按下 `開始` 按鈕開始
+    name: 按下 `開始` 按鈕開始整理任務
     condition:
       command: echo start
     response:
       content: |
-        這個關卡將會測試你是否理解之前的教學內容。
-        因此不會告訴你要輸入什麼指令。
-        請思考並應用正確的指令來完成任務。
+        😱 糟糕！所有的社課檔案都混在一起了！
+        
+        "拜託大家幫忙整理一下，下週就要開始上課了，
+        如果檔案沒有分類好，社員們會找不到教材的！"
+        
+        請先查看目前資料夾的內容，看看有哪些檔案需要整理。
 
-        現在，請讓終端機輸出 `next` 來繼續。
 
-  - id: next
-    name: 讓終端機輸出 `next`
+  - id: ls-messy
+    name: 查看目前資料夾的內容
     requirements:
       - start
     condition:
-      output: next
-    response:
-      content: |
-        現在請你查看目前資料夾的內容。
-
-  - id: ls-home
-    name: 查看目前資料夾的內容
-    requirements:
-      - next
-    condition:
-      pwd: /home/commander
       command: ls
     response:
       content: |
-        請查看 `hello.txt` 檔案的內容。
+        天啊！檔案真的很亂呢！你看到了各種檔案混在一起，
+        還有三個目標資料夾：python/、web/、c/
+        
+        請根據檔名判斷每個檔案應該放到哪個資料夾。
+        每個分類都有程式碼檔案和課程大綱檔案。
+        如果不確定的話，可以用 `cat` 查看檔案內容來幫助判斷。
+        
+        請開始整理這些檔案吧！
 
-  - id: cat-hello
-    name: 查看 `hello.txt` 檔案內容
-    requirements:
-      - ls-home
-    condition:
-      command: cat hello.txt
-      output: This is `hello.txt`.
-    response:
-      content: |
-        請查看另一個有著很長檔名的檔案內容。
+        💡 提示：若是檔案亂掉，可以按左下角的 `重來` 按鈕來重置關卡。
 
-  - id: cat-long-filename
-    name: 查看另一個檔案的內容
+  - id: classify-files
+    name: 將所有檔案分類到正確的資料夾
     requirements:
-      - cat-hello
-    condition:
-      command: cat pneumonoultramicroscopicsilicovolcanoconiosis.txt
-      output: A name that has been invented for a lung disease caused by breathing in very small pieces of ash or dust.
-    response:
-      content: |
-        現在請你建立一個名稱為 `folder` 的資料夾。
-
-  - id: mkdir-folder
-    name: 建立名稱為 `folder` 的資料夾
-    requirements:
-      - cat-long-filename
+      - ls-messy
     condition:
       files:
-        - path: /home/commander/folder
-          type: directory
+        - path: /home/commander/python/calculator.py
+          type: file
           exists: true
-    response:
-      content: |
-        最後，請你在 `folder` 資料夾中，
-        建立檔名為 `file.txt` 的檔案。
-
-  - id: finish
-    name: 在 `folder` 中建立檔名為 `file.txt` 的檔案
-    requirements:
-      - mkdir-folder
-    condition:
-      files:
-        - path: /home/commander/folder/file.txt
+        - path: /home/commander/python/python_syllabus.txt
+          type: file
+          exists: true
+        - path: /home/commander/web/portfolio.html
+          type: file
+          exists: true
+        - path: /home/commander/web/main.css
+          type: file
+          exists: true
+        - path: /home/commander/web/web_syllabus.txt
+          type: file
+          exists: true
+        - path: /home/commander/c/hello.c
+          type: file
+          exists: true
+        - path: /home/commander/c/c_syllabus.txt
           type: file
           exists: true
     response:
       content: |
-        恭喜你通過了這個測驗！
-        你可以繼續學習之後的教學內容了。
+        🎉 太棒了！看起來所有檔案都分類完成了！
+        
+        謝謝你的幫忙！現在所有的社課檔案都井井有條了：
+        - python/ 資料夾：Python程式設計檔案和課程大綱
+        - web/ 資料夾：網頁設計檔案和課程大綱
+        - c/ 資料夾：C語言程式檔案和課程大綱
+        
+        這樣社員們就能輕鬆找到需要的教材了！
+
+        輸入`echo finish` 完成任務吧！
+        
+
+
+  - id: finish
+    name: 輸出 `finish` 完成任務
+    requirements:
+      - classify-files
+    condition:
+      command: echo finish
+    response:
+      content: |
+        🏆 恭喜你完成了檔案分類任務，展現了優秀的檔案管理能力！

@@ -1,8 +1,8 @@
 id: get-started
 image: base
-title: 終端機的基本知識
+title: 輸入指令
 instruction: |
-  歡迎來到 Linux Odyssey！
+  歡迎來到終端機的世界！
   這個關卡是為了讓你熟悉終端機的基本操作。
   在這個關卡中，你將會學到：
   1. 如何使用這個網站
@@ -16,11 +16,9 @@ stages:
       command: ^echo start$
     response:
       content: |
-        嗨，勇敢的冒險者！
-        歡迎來到 Linux Odyssey！這是一場充滿終端機魔法的冒險之旅。
-        終端機就像是你的魔法杖，讓你用**文字咒語**來操控電腦，這可是成為程式大師的必備技能哦！
-        在畫面中下方的區域就是你的魔法舞台——終端機，準備好施展你的第一個咒語了嗎？
-        現在，請在下方輸入 `echo hello`，然後按下 Enter 鍵，看看會有什麼神奇的事情發生吧！
+        終端機是一個讓你可以直接和電腦「對話」的工具。你可以在終端機裡輸入指令，電腦就會根據你的指令執行動作。這裡不像點擊按鈕那樣操作，而是用文字來告訴電腦你想做什麼。
+
+        現在，請你在終端機輸入第一個指令：`echo hello`，然後按下 Enter。這個指令會讓終端機顯示出「hello」這個字，試試看吧！
 
   - id: echo-hello
     name: 在終端機輸入 `echo hello`
@@ -45,17 +43,17 @@ stages:
         - `hello` 是要電腦說的內容
         所以當你輸入 `echo hello` 時，電腦就會說出「hello」。
 
-        好的，那接下來，請你試試讓終端機顯示 `next` 這個字串。
+        好的，那接下來，請你試試讓終端機顯示 `hello NPC` 這個字串。
         如果遇到困難，可以按下 `提示` 按鈕來獲得提示。
       hint: |
-        請輸入 `echo next` 來繼續下一個步驟。
+        請輸入 `echo hello NPC` 來繼續下一個步驟。
 
-  - id: echo-next
-    name: 在終端機輸入 `echo next`
+  - id: echo-NPC
+    name: 在終端機輸入 `echo hello NPC`
     requirements:
       - echo-hello
     condition:
-      command: ^echo next$
+      command: ^echo hello [Nn][Pp][Cc]$
     response:
       content: |
         恭喜你學會了如何使用 `echo` 指令。
@@ -67,7 +65,7 @@ stages:
   - id: END
     name: 結束關卡
     requirements:
-      - echo-next
+      - echo-NPC
     condition:
       command: ^echo finish$
     response:
