@@ -40,7 +40,21 @@ export class GameSession {
 
   async runCommand(command: ICommand) {
     if (command.params) {
-      this.graph.handleEvent(command.params)
+      // this.graph.handleEvent(command.params)
+      const updatedParams = { ...command.params };
+      if (updatedParams.add) {
+        updatedParams.add = updatedParams.add.map(item => ({
+          ...item,
+          type: item.type === 'folder' ? 'directory' : item.type,
+        }));
+      }
+      if (updatedParams.remove) {
+        updatedParams.remove = updatedParams.remove.map(item => ({
+          ...item,
+          type: item.type === 'folder' ? 'directory' : item.type,
+        }));
+      }
+      this.graph.handleEvent(updatedParams as any);
     }
     const stageId = await this.quest.findSatisfiedEvent(command, this.completed)
     if (stageId) {
