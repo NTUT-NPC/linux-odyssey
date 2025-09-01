@@ -56,7 +56,7 @@ stages:
     condition:
       pwd: /home/commander/folder2
     exceptions:
-      - id: not_in_folder2
+      - id: not_in_folder21
         condition:
           pwd: /home/commander
         response:
@@ -76,7 +76,7 @@ stages:
     condition:
       output: file1.txt
     exceptions:
-      - id: not_in_folder2
+      - id: not_in_folder22
         condition:
           not:
             pwd: /home/commander/folder2
@@ -100,7 +100,7 @@ stages:
       pwd: /home/commander/folder2
       command: pwd
     exceptions:
-      - id: not_in_folder2
+      - id: not_in_folder23
         condition:
           not:
             pwd: /home/commander/folder2

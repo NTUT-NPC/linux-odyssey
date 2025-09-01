@@ -1,0 +1,82 @@
+id: checkpoint-03
+title: 拯救檔案
+image: base
+
+instruction: |
+  這是第三個測驗關卡！
+
+  程式設計社的幹部在整理檔案時，不小心把一份
+  **重要的行程表 (timetable.txt)** 丟進垃圾桶裡了！  
+
+  請你幫忙把它救回來！
+  
+
+requirements:
+  - copy
+  - remove
+
+stages:
+  - id: start
+    name: 按下 `開始` 按鈕開始任務
+    condition:
+      command: echo start
+    response:
+      content: |
+        程式設計社的資料夾裡有一些檔案和一個垃圾桶。
+
+        請先用 `ls` 查看目前有哪些資料夾。
+
+  - id: ls-home
+    name: 查看目前資料夾內容
+    requirements:
+      - start
+    condition:
+      command: ls
+    response:
+      content: |
+        你看到這些東西：
+
+        ```
+        docs
+        events
+        lessons
+        trash
+        ```
+        你的任務是：
+        1. 建立一個 `backup/` 資料夾  
+        2. 把垃圾桶中的 `timetable.txt` 複製到 `backup/`  
+        3. 確認備份完成後，把整個 `trash/` 資料夾刪掉  
+        請開始吧！
+
+
+  - id: backup-rescue
+    name: 建立 backup 並救出 timetable.txt
+    requirements:
+      - ls-home
+    condition:
+      files:
+        - path: /home/commander/backup/timetable.txt
+          type: file
+          exists: true
+        - path: /home/commander/trash
+          type: directory
+          exists: false
+    response:
+      content: |
+        🎉 完成啦！你已經：
+        - 建立了 `backup/` 資料夾
+        - 成功救出了 `timetable.txt` 並備份
+        - 用 `rm -r` 把整個垃圾桶清空了！
+
+        程式設計社幹部鬆了一口氣：「太好了！活動不會大亂了！」  
+        輸入`echo finish` 完成任務吧！
+
+  - id: finish
+    name: 輸出 `finish` 完成任務
+    requirements:
+      - backup-rescue
+    condition:
+      command: echo finish
+    response:
+      content: |
+        🏆 恭喜你完成了第三關 —— 學會了備份重要檔案並徹底清理垃圾！

@@ -1,0 +1,16 @@
+/* 這是一個 Web 專案的檔案喔。 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+}
+
+/* 這是一個 Web 專案的檔案喔。 */

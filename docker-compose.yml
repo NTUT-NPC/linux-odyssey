@@ -31,7 +31,7 @@ services:
       - ./data:/data/db
 
   base:
-    image: linuxodyssey/quest-base
+    image: npc-official/quest-base
     networks:
       - players-dev
     build:

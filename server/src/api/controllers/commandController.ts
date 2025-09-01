@@ -30,8 +30,17 @@ export const newCommand = asyncHandler(async (req: Request, res: Response) => {
     res.status(401).json({ message: 'Unauthorized' })
     return
   }
+
+  if (req.body.params?.discover) {
+    req.body.params.discover = req.body.params.discover.map((item: any) => ({
+      ...item,
+      type: item.type === 'folder' ? 'directory' : item.type
+    }))
+  }
+
   const body = commandSchema.safeParse(req.body)
   if (!body.success) {
+    console.error('Invalid command', body.error)
     res.status(400).json({ message: 'Invalid command', errors: body.error })
     return
   }

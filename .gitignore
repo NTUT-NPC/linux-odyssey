@@ -4,6 +4,9 @@ tmp
 services/terminal-service/terminal-service
 bin
 
+# Zone.Identifier files (Windows security markers)
+*:Zone.Identifier
+
 # Logs
 logs
 *.log

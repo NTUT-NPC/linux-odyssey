@@ -1,92 +1,173 @@
 id: checkpoint-01
-title: 測驗一
+title: 探索社團文件
 image: base
 instruction: |
-  在這個關卡中，將會考驗你是否理解以下內容：
-  1. `echo`：用來輸出文字
-  2. `ls`：用來查看資料夾的內容
-  3. `cd`：用來在資料夾之間移動
-  4. `pwd`：用來顯示目前的路徑
+  
+  歡迎來到第一個測驗關卡！
+  這關不會教你任何新指令，而是要測試你是否理解之前教過的內容。
+  若是卡住了，可以去前面的關卡複習。
+
+  作為新來的社員，請你先了解NPC社團的組織架構。
+  這樣你才能知道社團的歷史和目前的組織。
 
 requirements:
   - path
 
 stages:
   - id: start
-    name: 按下 `開始` 按鈕開始
+    name: 按下 `開始` 按鈕開始探索NPC社團
     condition:
       command: echo start
     response:
       content: |
-        這個關卡將會測試你是否理解之前的教學內容。
-        因此不會告訴你要輸入什麼指令。
-        請思考並應用正確的指令來完成任務。
-
-        現在，請讓終端機輸出 `next` 來繼續。
-
-  - id: next
-    name: 讓終端機輸出 `next`
-    requirements:
-      - start
-    condition:
-      output: next
-    response:
-      content: |
-        現在請你查看目前資料夾的內容。
+        🎉 歡迎NPC社團！
+        
+        你現在站在社團的入口，準備開始探索我們的組織架構。
+        作為新社員，了解社團的歷史和結構是很重要的！
+        請先查看當前資料夾的內容。
 
   - id: ls-home
     name: 查看目前資料夾的內容
     requirements:
-      - next
+      - start
     condition:
       pwd: /home/commander
-      command: ls
+      command: ^ls$
+
     response:
       content: |
-        請進入 `folder03` 資料夾。
+        太棒了！你看到了 `npc` 資料夾，這就是我們社團的主目錄。
+        請進入 `npc` 資料夾開始探索社團內部結構。
 
-  - id: cd-folder03
-    name: 進入 `folder03` 資料夾
+  - id: cd-npc
+    name: 進入 `npc` 資料夾
     requirements:
       - ls-home
     condition:
-      pwd: /home/commander/folder03
-    response:
-      content: |
-        請在終端機顯示目前的路徑。
+      pwd: /home/commander/npc
 
-  - id: pwd-folder03
-    name: 顯示目前的路徑
-    requirements:
-      - cd-folder03
-    condition:
-      command: pwd
-      output: /home/commander/folder03
     response:
       content: |
-        現在請你進入 `folder02` 資料夾，
-        並查看 `folder02` 資料夾的內容。
+        歡迎來到NPC社團內部！
+        現在請查看這個資料夾的內容，看看社團有幾屆的歷史資料。
 
-  - id: ls-folder02
-    name: 進入並查看 `folder02` 資料夾的內容
+  - id: ls-npc
+    name: 查看NPC資料夾的內容
     requirements:
-      - pwd-folder03
+      - cd-npc
     condition:
-      pwd: /home/commander/folder02
-      command: ls
-    response:
-      content: |
-        最後，請你留在 `folder02` 資料夾，
-        並查看 `folder01` 資料夾的內容。
+      pwd: /home/commander/npc
+      command: ^ls$
 
-  - id: finish
-    name: 留在 `folder02` 資料夾，查看 `folder01` 資料夾的內容
-    requirements:
-      - ls-folder02
-    condition:
-      pwd: /home/commander/folder02
-      output: file1.txt
     response:
       content: |
-        恭喜你通過了這個測驗！
-        你可以繼續學習之後的教學內容了。
+        哇！你發現了 th7、th8、th9 三個資料夾！
+        這代表我們社團已經有好幾屆的歷史了。
+        
+        現在請進入 `th9` 資料夾，看看最新一屆（也就是現在這屆）的資料。
+
+  - id: cd-th9
+    name: 進入 `th9` 資料夾
+    requirements:
+      - ls-npc
+    condition:
+      pwd: /home/commander/npc/th9
+
+    response:
+      content: |
+        你現在在第九屆的資料夾裡了！
+        請查看這個資料夾的內容，了解這一屆社團的組織架構。
+
+  - id: ls-th9
+    name: 查看 `th9` 資料夾的內容
+    requirements:
+      - cd-th9
+    condition:
+      pwd: /home/commander/npc/th9
+      command: ^ls$
+    exceptions:
+      - id: wrong_directory
+        condition:
+          not:
+            pwd: /home/commander/npc/th9
+        response:
+          type: narrative
+          content: |
+            請先確認你在 `/home/commander/npc/th9` 資料夾中。
+            如果不在正確位置，請使用 `cd ~/npc/th9` 進入 th9 資料夾。
+
+    response:
+      content: |
+        很好！你看到了三個重要的資料夾：
+        - `docs`：重要文件
+        - `lessons`：社課資料
+        - `events`：活動資料
+        
+        現在請進入 `docs` 資料夾，看看裡面有什麼重要文件。
+
+  - id: cd-docs
+    name: 進入 `docs` 資料夾
+    requirements:
+      - ls-th9
+    condition:
+      pwd: /home/commander/npc/th9/docs
+            
+    response:
+      content: |
+        你現在在docs資料夾裡！這裡存放著社團的重要文件。
+        
+        現在請你留在目前的 `docs` 資料夾，
+        但是查看同層級的 `lessons` 資料夾裡面有什麼社課資料。
+
+      hint: |
+        使用 `ls ../lessons` 指令。`../` 表示上一層資料夾，`lessons` 是同層級的資料夾名稱。
+
+ 
+
+  - id: ls-lessons-relative
+    name: 留在 `docs` 資料夾，查看 `lessons` 資料夾的內容
+    requirements:
+      - cd-docs
+    condition:
+      pwd: /home/commander/npc/th9/docs
+      command: ^ls \.\./lessons$
+    exceptions:
+      - id: wrong_directory
+        condition:
+          not:
+            pwd: /home/commander/npc/th9/docs
+        response:
+          type: narrative
+          content: |
+            請先確認你在 `/home/commander/npc/th9/docs` 資料夾中。
+            使用 `cd ~/npc/th9/docs` 來回到正確位置。
+
+    response:
+      content: |
+        太棒了！你學會了使用相對路徑 `../lessons` 來查看同層級的資料夾！
+        
+        你發現了豐富的社課內容：
+        - c_syllabus.txt
+        - python_syllabus.txt
+        - web_syllabus.txt
+
+        等等
+        
+        輸入 `echo finish` 來結束這個關卡。
+
+  - id: END
+    name: 結束關卡
+    requirements:
+      - ls-lessons-relative
+    condition:
+      command: ^echo finish$
+
+    response:
+      content: |
+        🎉 恭喜你完成了NPC社團的結構探索！
+        
+        透過這次探索，你了解到：
+        - NPC社團已經傳承到第九屆
+        - 社團有Python基礎、網頁設計等豐富的社課內容
+        
+        你已經準備好繼續學習更多Linux指令了！

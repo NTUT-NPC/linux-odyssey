@@ -49,6 +49,29 @@ export async function createGuestUser() {
   return user
 }
 
+export async function createStudentUser(studentId: string) {
+  // 檢查是否已存在該學號的用戶
+  const existingUser = await User.findOne({ username: studentId })
+  if (existingUser) {
+    return existingUser
+  }
+
+  // 建立新的學生用戶
+  const user = new User({
+    username: studentId,
+    email: `${studentId}@ntut.edu.tw`,
+    isGuest: false,
+  })
+  await user.save()
+
+  const profile = new UserProfile({
+    user,
+  })
+  await profile.save()
+
+  return user
+}
+
 export function leaderboard() {
   return UserProfile.aggregate([
     {

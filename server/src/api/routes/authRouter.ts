@@ -11,6 +11,7 @@ import {
   registerFromSession,
   socialLoginHandler,
   registerGuest,
+  studentLogin,
 } from '../controllers/authController.js'
 import {
   checkUsernameValidators,
@@ -74,6 +75,8 @@ async function recordLogin(req: Request, success: boolean, message: string) {
 router.post('/register', authenticateRateLimit, registerValidators, register)
 
 router.post('/register-guest', authenticateRateLimit, registerGuest)
+
+router.post('/student-login', authenticateRateLimit, studentLogin)
 
 router.post('/logout', logout)
 

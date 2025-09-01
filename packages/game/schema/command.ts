@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 const fileSchema = z.object({
   path: z.string(),
-  type: z.enum(['file', 'directory']),
+  type: z.enum(['file', 'directory', 'folder']),
   discovered: z.boolean(),
   empty: z.boolean().optional(),
 })
