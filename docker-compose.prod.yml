@@ -1,6 +1,6 @@
 services:
   app:
-    image: linuxodyssey/frontend
+    image: npc-official/frontend
     depends_on:
       - backend
     restart: always
@@ -14,7 +14,7 @@ services:
       - 8080:80
 
   backend:
-    image: linuxodyssey/backend
+    image: npc-official/backend
     depends_on:
       - db
     restart: always
@@ -38,7 +38,7 @@ services:
       - HOST_PROJECT_ROOT=${PWD}
 
   analytics:
-    image: linuxodyssey/analytics
+    image: npc-official/analytics
     build:
       context: .
       dockerfile: packages/analytics/Dockerfile
@@ -67,7 +67,7 @@ services:
       - .env.prod
 
   base:
-    image: linuxodyssey/quest-base
+    image: npc-official/quest-base
     build:
       context: .
       dockerfile: ./quests/Dockerfile
