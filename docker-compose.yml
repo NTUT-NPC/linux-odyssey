@@ -31,7 +31,7 @@ services:
       - ./data:/data/db
 
   base:
-    image: npc-official/quest-base
+    image: ntutnpc/quest-base:dev
     networks:
       - players-dev
     build:
