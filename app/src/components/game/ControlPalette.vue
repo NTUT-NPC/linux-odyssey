@@ -22,7 +22,7 @@ const continuePlay = async () => {
 
 <template>
   <section class="mt-2 flex flex-row gap-3 justify-center">
-    <button
+    <!--<button
       id="survey"
       class="bg-bg-secondary rounded-lg p-2"
       @click="openQuestSurvey"
@@ -40,7 +40,7 @@ const continuePlay = async () => {
     >
       <font-awesome-icon :icon="['fas', 'bug']" class="text-text-primary" />
       <p class="text-text-primary inline ml-1 md:flex">回報</p>
-    </button>
+    </button> -->
     <!-- <button disabled id="solution" class="bg-bg-disabled rounded-lg p-2">
       <font-awesome-icon
         :icon="['far', 'circle-question']"
