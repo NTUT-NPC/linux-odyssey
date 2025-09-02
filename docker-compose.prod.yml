@@ -1,6 +1,6 @@
 services:
   app:
-    image: npc-official/frontend
+    image: ntutnpc/frontend:stable
     depends_on:
       - backend
     restart: always
@@ -14,7 +14,7 @@ services:
       - 8080:80
 
   backend:
-    image: npc-official/backend
+    image: ntutnpc/backend:stable
     depends_on:
       - db
     restart: always
@@ -38,7 +38,7 @@ services:
       - HOST_PROJECT_ROOT=${PWD}
 
   analytics:
-    image: npc-official/analytics
+    image: ntutnpc/analytics:stable
     build:
       context: .
       dockerfile: packages/analytics/Dockerfile
@@ -67,7 +67,7 @@ services:
       - .env.prod
 
   base:
-    image: npc-official/quest-base
+    image: ntutnpc/quest-base:stable
     build:
       context: .
       dockerfile: ./quests/Dockerfile
