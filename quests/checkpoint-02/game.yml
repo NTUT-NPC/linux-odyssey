@@ -9,8 +9,8 @@ instruction: |
   你需要幫忙把這些檔案分類到正確的資料夾中。
 
 requirements:
-  - move
   - tab
+  - move
 
 
 stages:
@@ -37,8 +37,8 @@ stages:
     response:
       content: |
         天啊！檔案真的很亂呢！你看到了各種檔案混在一起，
-        還有三個目標資料夾：python/、web/、c/
-        
+
+        請先創建三個目標資料夾：python、web、c
         請根據檔名判斷每個檔案應該放到哪個資料夾。
         每個分類都有程式碼檔案和課程大綱檔案。
         如果不確定的話，可以用 `cat` 查看檔案內容來幫助判斷。

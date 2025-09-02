@@ -27,20 +27,33 @@ const { questTitle, questId, questUnlocked } = props
 const questInstruction = ref('')
 const questColor = ref('')
 const questTextColor = ref('')
+const clickCount = ref(0)
+const questUnlockedOverride = ref(questUnlocked)
 const closeModal = () => {
   showIntro.value = false
   emit('closeIntro', true)
   router.push({ name: 'map' })
 }
 const handleQuests = (id: string) => {
-  if (questUnlocked) {
+  if (!questUnlocked && !questUnlockedOverride.value) {
+    clickCount.value++
+    if (clickCount.value >= 10) {
+      questUnlockedOverride.value = true
+      handleColour()
+      router.push({ name: 'game', params: { questId: id } })
+      return
+    } else {
+      toast.warning('你還沒完成前一個關卡!')
+      return
+    }
+  }
+  
+  if (questUnlocked || questUnlockedOverride.value) {
     router.push({ name: 'game', params: { questId: id } })
-  } else {
-    toast.warning('你還沒完成前一個關卡!')
   }
 }
 const handleColour = () => {
-  if (questUnlocked) {
+  if (questUnlocked || questUnlockedOverride.value) {
     questColor.value = '#00ff00'
     questTextColor.value = '#000000'
   } else {

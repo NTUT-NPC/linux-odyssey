@@ -7,7 +7,7 @@ instruction: |
   2. 如何使用 `mv` 改變檔案與資料夾的名稱
 
 requirements:
-  - read
+  - create
 
 stages:
   - id: start

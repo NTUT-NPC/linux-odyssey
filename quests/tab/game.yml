@@ -10,7 +10,7 @@ instruction: |
   按下中間的按鈕來開始這個關卡。
 
 requirements:
-  - read
+  - create
 
 stages:
   - id: start

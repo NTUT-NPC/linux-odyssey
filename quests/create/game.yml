@@ -1,0 +1,119 @@
+id: create
+title: 建立檔案與資料夾
+image: base
+instruction: |
+  在這個關卡中，你將會學到：
+  1. 如何使用 `touch` 建立檔案
+  2. 如何使用 `mkdir` 建立資料夾
+
+requirements:
+  - read
+
+stages:
+  - id: start
+    name: 按下 `開始` 按鈕開始
+    condition:
+      command: echo start
+    response:
+      content: |
+        這次要學習的指令是 `touch`。  
+        請先用 `ls` 指令查看 `/home/commander` 裡有沒有檔案。
+      hint: 輸入 `ls`
+
+  - id: ls
+    name: 查看 `/home/commander` 的內容
+    requirements:
+      - start
+    condition:
+      pwd: /home/commander
+      command: ls
+    response:
+      content: |
+        這個目錄目前是空的。  
+        請用 `touch` 建立一個檔案，檔名為 `plan.txt`。
+      hint: 輸入 `touch plan.txt`
+
+  - id: touch-plan
+    name: 建立 `plan.txt`
+    requirements:
+      - ls
+    condition:
+      files:
+        - path: /home/commander/plan.txt
+          type: file
+          exists: true
+    response:
+      content: |
+        你已經建立好 `plan.txt` 了。  
+        我們用 `cat` 查看一下這個檔案的內容。
+        對了，如過你不放心檔案被創建了，可以用 `ls` 指令確認一下。
+      hint: 輸入 `cat plan.txt`
+
+  - id: cat-plan
+    name: 查看 `plan.txt` 的內容
+    requirements:
+      - touch-plan
+    condition:
+      command: cat plan.txt
+    response:
+      content: |
+        ```
+        (終端甚麼都沒有，因為新建的檔案沒有內容)
+        ```
+        沒錯，使用 `touch` 建立的檔案是空的。 
+        接下來，請建立一個資料夾 `projects`。
+        使用 `mkdir` 指令來建立資料夾。
+      hint: 輸入 `mkdir projects`
+
+
+  - id: mkdir-projects
+    name: 建立 `projects` 資料夾
+    requirements:
+      - cat-plan
+    condition:
+      files:
+        - path: /home/commander/projects
+          type: directory
+          exists: true
+    response:
+      content: |
+        你已經建立了 `projects` 資料夾。  
+        如過你不放心資料夾被創建了，可以用 `ls` 指令確認一下。
+        接下來請移動到 `projects` 資料夾裡。
+      hint: 輸入 `cd projects`
+
+  - id: cd-projects
+    name: 進入 `projects` 資料夾
+    requirements:
+      - mkdir-projects
+    condition:
+      pwd: /home/commander/projects
+    response:
+      content: |
+        你現在在 `projects` 資料夾裡。  
+        請在這裡建立一個檔案，檔名為 `readme.txt`。
+      hint: 輸入 `touch readme.txt`
+
+  - id: touch-readme
+    name: 建立 `readme.txt`
+    requirements:
+      - cd-projects
+    condition:
+      files:
+        - path: /home/commander/projects/readme.txt
+          type: file
+          exists: true
+    response:
+      content: |
+        做得好！你已經會用 `touch` 建立檔案，`mkdir` 建立資料夾，還會用 `cd` 移動到資料夾。  
+        輸入 `ls` 來確定檔案有被創建。
+
+  - id: END
+    name: 完成關卡
+    requirements:
+      - touch-readme
+    condition:
+      command: ls
+    response:
+      content: |
+        恭喜！你完成了這個關卡。
