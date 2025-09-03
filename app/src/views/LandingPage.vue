@@ -41,7 +41,7 @@ const startGame = async () => {
               </h1>
               <div class="text-text bg-bg-primary p-8 rounded-xl opacity-90 text-center" style="font-size: 2.5vh">
                 <p class="mb-4">
-                  歡迎來到北科程式設計社！🚀
+                  歡迎來到北科程式設計研究社！🚀
                 </p>
 
 
