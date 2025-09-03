@@ -76,7 +76,7 @@ stages:
       command: cat BudgetRprtWthTyposAndMstaksThatAreHardToRead.txt
     response:
       content: |
-        你看到了這個充滿錯字的NTUT程式設計社預算報告檔案了。
+        你看到了這個充滿錯字的NTUT程式設計研究社預算報告檔案了。
         只要使用自動補全，不管是錯字、大小寫變化、還是隨機亂碼都不再是困擾了。
         讓我們再練習一個，這次請你查看 `Events_and_Documents_Archive` 資料夾中的檔案。
         一樣，輸入前幾個字，然後按 Tab 自動補全。
@@ -102,7 +102,7 @@ stages:
             請輸入 `cd ~` 回到 `/home/commander` 資料夾。
     response:
       content: |
-        你看到了這個資料夾裡有著三個檔案：一個程式設計社活動企劃書跟兩個社員名單檔案。
+        你看到了這個資料夾裡有著三個檔案：一個程式設計研究社活動企劃書跟兩個社員名單檔案。
         假如我們要打開活動企劃書 `HowToOrganizeAProgrammingWorkshop.txt`，但是它位在資料夾中，我們沒辦法只按一次 Tab 就補全它的檔名。
         這次我們就要來練習使用**連續的自動補全**。
 
