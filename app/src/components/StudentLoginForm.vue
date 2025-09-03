@@ -59,7 +59,7 @@ const handleSubmit = async () => {
     <div class="w-full flex items-center justify-center mb-6 gap-3">
       <img src="/icon_totem.svg" class="h-10" />
       <h1 class="text-text-primary text-3xl font-black">
-        北科程式社團登入
+        北科程式設計研究社登入
       </h1>
     </div>
 

@@ -37,7 +37,7 @@ const startGame = async () => {
           <div class="w-full md:w-2/3 px-5">
             <section id="intro" class="text-text grid grid-cols-1 gap-6 justify-items-center pt-8 pb-6">
               <h1 class="text-text-primary text-5xl md:text-6xl font-extrabold font-mono text-center my-8">
-                🎓 北科程式社團新生體驗
+                🎓 北科程式設計研究社新生體驗
               </h1>
               <div class="text-text bg-bg-primary p-8 rounded-xl opacity-90 text-center" style="font-size: 2.5vh">
                 <p class="mb-4">
@@ -82,7 +82,7 @@ const startGame = async () => {
                   📚 關於我們的社團
                 </h1>
                 <p class="text-lg text-center max-w-3xl">
-                  北科程式社團是一個歡迎所有程度同學參與的學習社群，無論你是初學者還是有經驗的開發者，都能在這裡找到志同道合的夥伴。我們定期舉辦社課、專案分享和交流活動，鼓勵大家動手實作、互相學習，讓程式設計變得有趣又有成就感！
+                  北科程式設計研究社是一個歡迎所有程度同學參與的學習社群，無論你是初學者還是有經驗的開發者，都能在這裡找到志同道合的夥伴。我們定期舉辦社課、專案分享和交流活動，鼓勵大家動手實作、互相學習，讓程式設計變得有趣又有成就感！
                 </p>
                 <div class="flex flex-col md:flex-row gap-4 mt-4">
                   <div class="flex flex-col md:flex-row gap-4 mt-4">
